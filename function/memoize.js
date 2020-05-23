@@ -16,5 +16,16 @@ log(getAreaWithMemory(4))
 // 模拟memize
 
 function memoize(f){
-    return function(){ }
+    let cache = {}
+    return function(){
+        let key = JSON.stringify(arguments)
+        cache[key] = cache[key] || f.apply(this,arguments)
+        return cache[key]
+     }
 }
+
+let getAreaWithMemory1 = memoize(getArea)
+// 缓存，只会执行一次log(r)
+log(getAreaWithMemory1(4))
+log(getAreaWithMemory1(4))
+log(getAreaWithMemory1(4))
