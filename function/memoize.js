@@ -1,3 +1,4 @@
+// 缓存纯函数
 const _ = require('lodash')
 
 const {log}= console

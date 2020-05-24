@@ -1,3 +1,4 @@
+// 闭包
 function makePower(m){
     return function(n){
         return Math.pow(n,m)

@@ -1,4 +1,4 @@
-// Functor
+// Functor函子
 class Container{
     constructor(v){
         this._value = v

@@ -1,3 +1,4 @@
+// 柯里化
 const _ = require('lodash')
 const {log}= console
 

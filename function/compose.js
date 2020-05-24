@@ -1,3 +1,4 @@
+// 函数组合
 function compose(f,g){
     return function(v){
         return f(g(v))
