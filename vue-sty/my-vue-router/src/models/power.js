@@ -23,6 +23,10 @@ export default class Power {
     this[_left] = left
     this[_right] = right
     this.test = 'test'
+    this.mmm = {
+      obj: 'dddd'
+    }
+    this.nm = [1, { b: 'a' }, null, 'mmm']
   }
 
   // 初始化

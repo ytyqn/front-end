@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" @click="changeTest">
-    {{$model.$power.test}}
+    <template v-for="item in $model.$power.nm">
+      {{item}}
+    </template>
+
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
@@ -17,7 +20,8 @@ export default {
   },
   methods: {
     changeTest () {
-      this.$model.$power.test += 'sss'
+      this.$model.$power.nm.push('ccc')
+      this.$model.$power.nm[3] += 'ss'
     }
   }
 }

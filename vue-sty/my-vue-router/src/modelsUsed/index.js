@@ -17,7 +17,6 @@ export default class Models {
     // 2. 把Vue构造函数记录到全局变量
     _Vue = Vue
     // 3. 把创建Vue实例时候传入的router对象注入到Vue实例上
-    // _Vue.prototype.$router = this.$options.router
     // 混入
     _Vue.mixin({
       beforeCreate () {
@@ -30,7 +29,7 @@ export default class Models {
   }
 
   constructor (options) {
-    this.options = options
+    this.options = options || {}
     this.dataMap = {}
   }
 
@@ -56,6 +55,10 @@ export default class Models {
       _Vue.prototype.$model[i] = new Proxy(model, {
         get: function (obj, prop) {
           if (prop in obj) {
+            // console.log(typeof obj[prop] == 'function')
+            if (typeof obj[prop] === 'function') {
+              return obj[prop]
+            }
             return self.dataMap[i][prop]
           } else {
             throw new Error('No this key in Class')
