@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <img alt="Vue logo" src="../assets/logo.png" @click="changeTest">
+    {{$model.$power.test}}
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
@@ -13,6 +14,11 @@ export default {
   name: 'Home',
   components: {
     HelloWorld
+  },
+  methods: {
+    changeTest () {
+      this.$model.$power.test += 'sss'
+    }
   }
 }
 </script>
