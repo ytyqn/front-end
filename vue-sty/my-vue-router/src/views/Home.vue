@@ -1,9 +1,10 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" @click="changeTest">
-    <template v-for="item in $model.$power.nm">
+    <template v-for="item in $power.nm">
       {{item}}
     </template>
+    <Test />
 
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>

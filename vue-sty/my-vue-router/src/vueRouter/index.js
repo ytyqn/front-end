@@ -98,6 +98,8 @@ export default class VueRouter {
     Vue.component('router-view', {
       render (h) {
         const compontent = self.routerMap[self.data.current]
+
+        console.log(compontent)
         return h(compontent)
       }
     })
