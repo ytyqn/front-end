@@ -15,11 +15,15 @@ class Observer{
     }
     defineReactive(obj, key, val){
         let that = this
+        let dep = new Dep()
         this.walk(val)
         Object.defineProperty(obj,key,{
             enumerable:true,
             configurable: true,
             get(){
+                if(Dep.target){
+                    dep.addSub(Dep.target)
+                }
                 return val
                 // return obj[key] 会发生死递归
             },
@@ -29,6 +33,7 @@ class Observer{
                 }
                 val = newValue
                 that.walk(newValue)
+                dep.notify()
             }
         })
     }
