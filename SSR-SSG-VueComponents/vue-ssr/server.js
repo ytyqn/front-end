@@ -1,25 +1,30 @@
 const Vue = require('vue')
 const fs = require('fs')
-const renderer = require('vue-server-renderer').createRenderer({
-    template: fs.readFileSync('./index.template.html','utf-8')
+const serverBundle = require('./dist/vue-ssr-server-bundle.json')
+const template = fs.readFileSync('./index.template.html','utf-8')
+const clientManifest = require('./dist/vue-ssr-client-manifest.json')
+const renderer = require('vue-server-renderer').createBundleRenderer(serverBundle,{
+    template,clientManifest
 })
 const express = require('express')
 
 const serve = express()
 
+serve.use('/dist', express.static('./dist'))
+
 serve.get('/',(req,res)=>{
-    const app = new Vue({
-        template: `
-            <div id="app">
-                <h1>{{ message }}</h1>
-            </div>
-        `,
-        data:{
-            message:'ytyt'
-        }
-    })
+    // const app = new Vue({
+    //     template: `
+    //         <div id="app">
+    //             <h1>{{ message }}</h1>
+    //         </div>
+    //     `,
+    //     data:{
+    //         message:'ytyt'
+    //     }
+    // })
      
-    renderer.renderToString(app, {
+    renderer.renderToString( {
         title: 'yqyq',
         meta: `<meta name="description" content="yyj">`
     },(err, html)=>{
@@ -41,6 +46,6 @@ serve.get('/',(req,res)=>{
     })
 })
 
-serve.listen(3000,()=>{
-    console.log('server running at port 3000.')
+serve.listen(5000,()=>{
+    console.log('server running at port 5000.')
 })
